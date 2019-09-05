@@ -85,6 +85,14 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  //new article content to add to array
+  {
+    title: 'New Article Added to Array',
+    date: 'September 5th, 2019',
+    firstParagraph: `Adipisicing aliqua duis pariatur labore labore qui incididunt amet. Consequat irure laborum nisi esse duis sit. In nostrud anim tempor     adipisicing minim sint cillum Lorem irure. Do qui aliqua minim sunt. Adipisicing et aliqua tempor aute labore aliqua eiusmod excepteur consectetur cupidatat.`,
+    secondParagraph: `In laborum qui amet sit est minim cupidatat id cupidatat incididunt incididunt. Labore proident sint consequat ea Lorem exercitation elit qui. Non nostrud excepteur quis cupidatat. Dolore eiusmod incididunt non incididunt labore.`,
+    thirdParagraph: `Eu occaecat in velit dolor non pariatur ipsum aliqua. Duis adipisicing amet Lorem cillum nisi pariatur ullamco amet nulla dolore. Pariatur dolor non est aliqua ut cillum velit aute ex elit et ullamco mollit magna. Reprehenderit pariatur cupidatat adipisicing sunt magna esse sit excepteur consectetur cupidatat commodo elit anim.`
   }
 ];
 
@@ -112,3 +120,48 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function createArticle(article) {
+
+  //define new elements
+  const main = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const contentOne = document.createElement('p');
+  const contentTwo = document.createElement('p');
+  const contentThree = document.createElement('p');
+  const button = document.createElement('span');
+
+  //setup structure of elements
+  main.appendChild(title);
+  main.appendChild(date);
+  main.appendChild(contentOne);
+  main.appendChild(contentTwo);
+  main.appendChild(contentThree);
+  main.appendChild(button);
+
+  //set class names
+  main.classList.add('article');
+  date.classList.add('date');
+  button.classList.add('expandButton');
+
+  //set text content
+  title.textContent = article.title;
+  date.textContent = article.date;
+  contentOne.textContent = article.firstParagraph;
+  contentTwo.textContent = article.secondParagraph;
+  contentThree.textContent = article.thirdParagraph;
+  button.textContent = "Click Me";
+
+  //add event listener
+  button.addEventListener('click', (e) => {
+    console.log('button clicked', e.target)
+    main.classList.toggle('.article-open');
+    contentOne.classList.toggle('expandButton');
+  })
+  return main
+}
+
+articles = document.querySelector('.articles');
+data.forEach(element => {
+  articles.appendChild(createArticle(element));
+})
