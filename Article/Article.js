@@ -134,37 +134,42 @@ function createArticle(article) {
   const main = document.createElement('div');
   const title = document.createElement('h2');
   const date = document.createElement('p');
+  const contentWrapper = document.createElement('div');
   const contentOne = document.createElement('p');
   const contentTwo = document.createElement('p');
   const contentThree = document.createElement('p');
   const button = document.createElement('span');
 
+//set text content
+title.textContent = article.title;
+date.textContent = article.date;
+contentOne.textContent = article.firstParagraph;
+contentTwo.textContent = article.secondParagraph;
+contentThree.textContent = article.thirdParagraph;
+button.textContent = "Click Me";
+
+//set class names
+main.classList.add('article');
+date.classList.add('date');
+button.classList.add('expandButton');
+
   //setup structure of elements
   main.appendChild(title);
   main.appendChild(date);
-  main.appendChild(contentOne);
-  main.appendChild(contentTwo);
-  main.appendChild(contentThree);
+  contentWrapper.appendChild(contentOne);
+  contentWrapper.appendChild(contentTwo);
+  contentWrapper.appendChild(contentThree);
+  main.appendChild(contentWrapper);
   main.appendChild(button);
 
-  //set class names
-  main.classList.add('article');
-  date.classList.add('date');
-  button.classList.add('expandButton');
 
-  //set text content
-  title.textContent = article.title;
-  date.textContent = article.date;
-  contentOne.textContent = article.firstParagraph;
-  contentTwo.textContent = article.secondParagraph;
-  contentThree.textContent = article.thirdParagraph;
-  button.textContent = "Click Me";
+  
 
   //add event listener
   button.addEventListener('click', (e) => {
     console.log('button clicked', e.target)
-    main.classList.toggle('.article-open');
-    contentOne.classList.toggle('expandButton');
+    main.classList.toggle('article-open');
+    // button.classList.toggle('expandButton');
   })
   return main
 }

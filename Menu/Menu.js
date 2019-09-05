@@ -55,7 +55,7 @@ function createMenu(array){
     console.log('button clicked', e.target);
     menu.classList.toggle('menu--open');
   })
-  console.log(menu);
+  // console.log(menu);
   return menu;
 }
 let header = document.querySelector('.header');
