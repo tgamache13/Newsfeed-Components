@@ -85,6 +85,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  //new article content to add to array
+  {
+    title: 'New Article Added to Array',
+    date: 'September 5th, 2019',
+    firstParagraph: `Adipisicing aliqua duis pariatur labore labore qui incididunt amet. Consequat irure laborum nisi esse duis sit. In nostrud anim tempor     adipisicing minim sint cillum Lorem irure. Do qui aliqua minim sunt. Adipisicing et aliqua tempor aute labore aliqua eiusmod excepteur consectetur cupidatat.`,
+    secondParagraph: `In laborum qui amet sit est minim cupidatat id cupidatat incididunt incididunt. Labore proident sint consequat ea Lorem exercitation elit qui. Non nostrud excepteur quis cupidatat. Dolore eiusmod incididunt non incididunt labore.`,
+    thirdParagraph: `Eu occaecat in velit dolor non pariatur ipsum aliqua. Duis adipisicing amet Lorem cillum nisi pariatur ullamco amet nulla dolore. Pariatur dolor non est aliqua ut cillum velit aute ex elit et ullamco mollit magna. Reprehenderit pariatur cupidatat adipisicing sunt magna esse sit excepteur consectetur cupidatat commodo elit anim.`
+  },
+  //new article to add for part 2
+  {
+    title: 'Second article I Am Adding',
+    date: 'September 5th, 2019',
+    firstParagraph: `Ad minim sint Lorem est velit sint velit incididunt Lorem eiusmod. Aliqua ullamco pariatur ea est ex nostrud proident eu mollit reprehenderit qui laborum. In reprehenderit eiusmod esse incididunt fugiat laborum duis Lorem tempor excepteur. Ea exercitation sint laboris consectetur cupidatat est ipsum. Dolore eu ad eiusmod qui velit mollit do labore non duis est. Pariatur do adipisicing id magna in est eiusmod exercitation pariatur ullamco voluptate deserunt est Lorem. Fugiat est reprehenderit proident quis do culpa in laborum incididunt et proident magna deserunt ad.`,
+    secondParagraph: `Nulla ad incididunt ullamco nulla. Ex ad labore adipisicing pariatur nisi do id excepteur cillum deserunt cupidatat quis. Culpa labore sit sint fugiat proident ex nulla nulla velit esse est eu exercitation.`,
+    thirdParagraph: `Sit eu laboris exercitation sunt culpa cillum sunt. Quis Lorem occaecat qui qui minim consequat dolore mollit aliqua nisi adipisicing sit. Sit cillum proident deserunt est.`
   }
 ];
 
@@ -112,3 +128,53 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function createArticle(article) {
+
+  //define new elements
+  const main = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const contentWrapper = document.createElement('div');
+  const contentOne = document.createElement('p');
+  const contentTwo = document.createElement('p');
+  const contentThree = document.createElement('p');
+  const button = document.createElement('span');
+
+//set text content
+title.textContent = article.title;
+date.textContent = article.date;
+contentOne.textContent = article.firstParagraph;
+contentTwo.textContent = article.secondParagraph;
+contentThree.textContent = article.thirdParagraph;
+button.textContent = "Click Me";
+
+//set class names
+main.classList.add('article');
+date.classList.add('date');
+button.classList.add('expandButton');
+
+  //setup structure of elements
+  main.appendChild(title);
+  main.appendChild(date);
+  contentWrapper.appendChild(contentOne);
+  contentWrapper.appendChild(contentTwo);
+  contentWrapper.appendChild(contentThree);
+  main.appendChild(contentWrapper);
+  main.appendChild(button);
+
+
+  
+
+  //add event listener
+  button.addEventListener('click', (e) => {
+    console.log('button clicked', e.target)
+    main.classList.toggle('article-open');
+    // button.classList.toggle('expandButton');
+  })
+  return main
+}
+
+articles = document.querySelector('.articles');
+data.forEach(element => {
+  articles.appendChild(createArticle(element));
+})
